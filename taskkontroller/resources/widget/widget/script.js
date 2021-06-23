@@ -176,7 +176,7 @@ define( [ 'jquery', 'underscore', 'twigjs', 'lib/components/base/modal' ], funct
 
         if ( self.params.status === "installed" )
         {
-          $( 'input#leadsDist_privacyPolicy' )[ 0 ].checked = true;
+          $( 'input#taskkontroller_privacyPolicy' )[ 0 ].checked = true;
         }
 
         // Widgetsautorisation
@@ -187,31 +187,31 @@ define( [ 'jquery', 'underscore', 'twigjs', 'lib/components/base/modal' ], funct
             $( 'input[name="Konstante"]' ).trigger ( 'change' );    
             ==================================*/
 
-            $('input[name="fio"]')[0].disabled = true;
-            $('input[name="tel"]')[0].disabled = true;
-            $('input[name="email"]')[0].disabled = true;
+            $( 'input[name="fio"]' )[ 0 ].disabled = true;
+            $( 'input[name="tel"]' )[ 0 ].disabled = true;
+            $( 'input[name="email"]' )[ 0 ].disabled = true;
 
-            $( 'input#leadsDist_privacyPolicy' ).change( function(){
+            $( 'input#taskkontroller_privacyPolicy' ).change( function(){
 
                 if ( $( this )[ 0 ].checked )
                 {
-                  console.debug( 'leadsDist_privacyPolicy ist aktiviert' ); // Debug
+                  console.debug( 'taskkontroller_privacyPolicy ist aktiviert' ); // Debug
 
-                  $('input[name="fio"]')[0].disabled = false;
-                  $('input[name="tel"]')[0].disabled = false;
-                  $('input[name="email"]')[0].disabled = false;
+                  $( 'input[name="fio"]' )[ 0 ].disabled = false;
+                  $( 'input[name="tel"]' )[ 0 ].disabled = false;
+                  $( 'input[name="email"]' )[ 0 ].disabled = false;
                 }
                 else
                 {
-                  console.debug( 'leadsDist_privacyPolicy ist deaktiviert' ); // Debug
+                  console.debug( 'taskkontroller_privacyPolicy ist deaktiviert' ); // Debug
 
-                  $('input[name="fio"]')[0].disabled = true;
-                  $('input[name="tel"]')[0].disabled = true;
-                  $('input[name="email"]')[0].disabled = true;
+                  $( 'input[name="fio"]' )[ 0 ].disabled = true;
+                  $( 'input[name="tel"]' )[ 0 ].disabled = true;
+                  $( 'input[name="email"]' )[ 0 ].disabled = true;
 
-                  $('input[name="fio"]')[0].value = '';
-                  $('input[name="tel"]')[0].value = '';
-                  $('input[name="email"]')[0].value = '';
+                  $( 'input[name="fio"]' )[ 0 ].value = '';
+                  $( 'input[name="tel"]' )[ 0 ].value = '';
+                  $( 'input[name="email"]' )[ 0 ].value = '';
 
                   $( 'input[name="fio"]' ).trigger ( 'change' );
                   $( 'input[name="tel"]' ).trigger ( 'change' );
@@ -230,7 +230,7 @@ define( [ 'jquery', 'underscore', 'twigjs', 'lib/components/base/modal' ], funct
                   $( 'input[name="email"]' )[ 0 ].value == ''
                 )
                 {
-                  console.debug( 'Felder müssen ausgefüllt werden' );
+                  console.debug( 'Felder müssen ausgefüllt werden' ); // Debug
                 }
                 else
                 {
@@ -246,80 +246,82 @@ define( [ 'jquery', 'underscore', 'twigjs', 'lib/components/base/modal' ], funct
 
                     $.post(
 
-                        self.serverAddress + "/api/amoAuth/login?subdomain=" + AMOCRM.widgets.system.subdomain,
+                      self.serverAddress + "/api/amoAuth/login?subdomain=" + AMOCRM.widgets.system.subdomain,
 
-                        {
-                          amoDaten: JSON.stringify( Ausfuhrdaten ), // POST-Daten senden
-                        },
+                      {
+                        amoDaten: JSON.stringify( Ausfuhrdaten ), // POST-Daten senden
+                      },
 
-                        ( Antwort ) => {
-                            console.debug( "Erfolg bei der Anmeldung" ); // Debug
-                            console.debug( Antwort ); // Debug
+                      ( Antwort ) => {
+                          console.debug( "Erfolg bei der Anmeldung" ); // Debug
+                          console.debug( Antwort ); // Debug
 
-                            setTimeout(() => {
-                                $.get( 
-                                  self.serverAddress + "/api/redirect/clean/" + AMOCRM.widgets.system.subdomain,
-                                    
-                                  function( Antwort )
-                                  {
-                                    console.debug( 'Rest von Rediretsdaten aus der Datenbank entfernen' );
-                                    console.debug( Antwort );
-                                  }, 
-                                    
-                                  'json'
-                                );
-                            }, 2000);
-                        },
+                          setTimeout(() => {
+                              $.get( 
+                                self.serverAddress + "/api/redirect/clean/" + AMOCRM.widgets.system.subdomain,
+                                  
+                                function( Antwort )
+                                {
+                                  console.debug( 'Rest von Rediretsdaten aus der Datenbank entfernen' );
+                                  console.debug( Antwort );
+                                }, 
+                                  
+                                'json'
+                              );
+                          }, 2000);
+                      },
 
-                        "json"
+                      "json"
 
                     ).fail( ( Antwort ) => {
-                            let noticeData  = '';
 
-                            switch ( Antwort.status )
-                            {
-                                case 408:
-                                    noticeData = `
-                                        <h3>
-                                            Ошибка при авторизации
-                                        </h3>
-                                        <p>
-                                            Авторизационный код истёк.<br>
-                                            Переподключите, пожалуйста, виджет.<br>
-                                        </p>
-                                    `;
-                                    self.notice( 'Распределение ЛИДов', noticeData );
-                                break;
+                      let noticeData  = '';
 
-                                case 404:
-                                    noticeData = `
-                                        <h3>
-                                            Ошибка при авторизации
-                                        </h3>
-                                        <p>
-                                            Авторизационный код не найден на серверной стороне виджета.<br>
-                                            Переподключите, пожалуйста, виджет.<br>
-                                        </p>
-                                    `;
-                                    self.notice( 'Распределение ЛИДов', noticeData );
-                                break;
+                      switch ( Antwort.status )
+                      {
+                          case 408:
+                              noticeData = `
+                                  <h3>
+                                      Ошибка при авторизации
+                                  </h3>
+                                  <p>
+                                      Авторизационный код истёк.<br>
+                                      Переподключите, пожалуйста, виджет.<br>
+                                  </p>
+                              `;
+                              self.notice( 'Распределение ЛИДов', noticeData );
+                          break;
 
-                                default:
-                                    noticeData = `
-                                        <h3>
-                                            Ошибка при авторизации
-                                        </h3>
-                                        <p>
-                                            Неизвестная ошибка.<br>
-                                            Код ошибки: ${Antwort.status}<br>
-                                            Обратитесь, пожалуйста, в техническую поддержку разработчика.<br>
-                                            Контактные данные Вы сможете найти в настройках виджета раздела "Интеграции".
-                                        </p>
-                                    `;
-                                    self.notice( 'Распределение ЛИДов', noticeData );
-                                break;
-                            }
-                    });
+                          case 404:
+                              noticeData = `
+                                  <h3>
+                                      Ошибка при авторизации
+                                  </h3>
+                                  <p>
+                                      Авторизационный код не найден на серверной стороне виджета.<br>
+                                      Переподключите, пожалуйста, виджет.<br>
+                                  </p>
+                              `;
+                              self.notice( 'Распределение ЛИДов', noticeData );
+                          break;
+
+                          default:
+                              noticeData = `
+                                  <h3>
+                                      Ошибка при авторизации
+                                  </h3>
+                                  <p>
+                                      Неизвестная ошибка.<br>
+                                      Код ошибки: ${Antwort.status}<br>
+                                      Обратитесь, пожалуйста, в техническую поддержку разработчика.<br>
+                                      Контактные данные Вы сможете найти в настройках виджета раздела "Интеграции".
+                                  </p>
+                              `;
+                              self.notice( 'Распределение ЛИДов', noticeData );
+                          break;
+                      }
+
+                    } );
                 }
             } );
         }
