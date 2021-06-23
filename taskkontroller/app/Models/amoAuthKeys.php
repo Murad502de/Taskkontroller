@@ -11,7 +11,7 @@ class amoAuthKeys extends Model
 
     function __construct()
     {
-        $this->table = 'amo_auth_keys';
+        $this->table = 'amocrm_auth_keys';
     }
 
     public function getAmoAuthKeys () 
