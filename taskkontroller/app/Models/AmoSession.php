@@ -11,7 +11,7 @@ class AmoSession extends Model
 
     function __construct()
     {
-        $this->table = 'amo_sessions';
+        $this->table = 'amocrm_sessions';
     }
 
     public function startSession( $subdomain )

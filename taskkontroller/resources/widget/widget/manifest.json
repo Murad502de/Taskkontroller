@@ -3,9 +3,9 @@
     "name": "widget.name",
     "description": "widget.description",
     "short_description": "widget.short_description",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "interface_version": 2,
-    "init_once": true,
+    "init_once": false,
     "locale": [
       "ru",
       "en"
@@ -13,7 +13,7 @@
     "installation": true,
     "support": {
       "link": "https://www.amocrm.com",
-      "email": "support@amocrm.com"
+      "email": "rassulovmurad@gmail.com"
     }
   },
   "locations": [
@@ -38,18 +38,18 @@
     "tour_description": "widget.tour_description"
   },
   "settings": {
-    "login": {
-      "name": "settings.login",
+    "fio": {
+      "name": "settings.fio",
       "type": "text",
       "required": true
     },
-    "api_key": {
-      "name": "settings.api_key",
+    "tel": {
+      "name": "settings.tel",
       "type": "text",
       "required": true
     },
-    "account": {
-      "name": "settings.account",
+    "email": {
+      "name": "settings.email",
       "type": "text",
       "required": true
     }

@@ -6,9 +6,9 @@
         "tour_description":"Описание виджета"
     },
     "settings":{
-        "login":"Логин",
-        "api_key":"ключ API",
-        "account":"Аккаунт"
+        "fio":"Ф.И.О.",
+        "tel":"Телефон",
+        "email":"Email"
     },
     "advanced":{
         "title":"Заголовок меню в настройках"

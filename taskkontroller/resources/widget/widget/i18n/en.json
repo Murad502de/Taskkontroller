@@ -6,9 +6,9 @@
         "tour_description":"Tour description"
     },
     "settings":{
-        "login":"User login",
-        "api_key":"API key",
-        "account":"Account"
+        "fio":"First and last name",
+        "tel":"Phone",
+        "email":"Email"
     },
     "advanced":{
         "title":"Settings menu item title"

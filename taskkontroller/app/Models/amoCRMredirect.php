@@ -11,7 +11,7 @@ class amoCRMredirect extends Model
 
     function __construct()
     {
-        $this->table = 'amo_redirects';
+        $this->table = 'amocrm_redirects';
     }
 
     public function saveRedirectData ( $redirectData )
