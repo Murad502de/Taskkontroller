@@ -25,6 +25,6 @@ Route::get( '/getSettings', [ SettingsController::class, 'get' ] );
 Route::post( '/setSettings', [ SettingsController::class, 'set' ] );
 
 //test
-Route::post( '/test', function(){
+Route::get( '/test', function(){
     phpinfo();
 } );
