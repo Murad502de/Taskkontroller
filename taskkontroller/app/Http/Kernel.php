@@ -14,6 +14,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middleware = [
+        \Fruitcake\Cors\HandleCors::class,
         // \App\Http\Middleware\TrustHosts::class,
         \App\Http\Middleware\TrustProxies::class,
         \Fruitcake\Cors\HandleCors::class,
@@ -76,6 +77,7 @@ class Kernel extends HttpKernel
      * @var array
      */
     protected $middlewarePriority = [
+        \Fruitcake\Cors\HandleCors::class,
         \App\Http\Middleware\amoCRM\SessionСheckMiddleware::class,
         \App\Http\Middleware\amoCRM\amoAuth::class,
         \App\Http\Middleware\amoCRM\amoAccessTokenVerification::class

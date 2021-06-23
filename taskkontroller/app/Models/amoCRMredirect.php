@@ -16,25 +16,18 @@ class amoCRMredirect extends Model
 
     public function saveRedirectData ( $redirectData )
     {
-        if ( !$redirectData )
-        {
-            return response( [ 'No Content ' ], 204 );
-        }
-        else
-        {
-            //\file_put_contents( 'data/debug/redirectData.txt', \print_r( $redirectData, true ) );
+        //\file_put_contents( 'data/debug/redirectData.txt', \print_r( $redirectData, true ) );
 
-            $subdomain = explode( '.', $redirectData[ 'referer' ] )[ 0 ];
+        $subdomain = explode( '.', $redirectData[ 'referer' ] )[ 0 ];
 
-            $this->where( 'subdomain', '=', $subdomain )->delete();
+        $this->where( 'subdomain', '=', $subdomain )->delete();
 
-            $this->subdomain = $subdomain;
-            $this->client_id = $redirectData[ 'client_id' ];
-            $this->auth_code = $redirectData[ 'code' ];
-            $this->when_expires = time() + 1200;
+        $this->subdomain = $subdomain;
+        $this->client_id = $redirectData[ 'client_id' ];
+        $this->auth_code = $redirectData[ 'code' ];
+        $this->when_expires = time() + 1200;
 
-            return $this->save() ? response( [ 'OK' ], 200 ) : response( [ 'Conflict' ], 409 );
-        }
+        return $this->save() ? response( [ 'OK' ], 200 ) : response( [ 'Conflict' ], 409 );
     }
 
     public function getRedirectData ( $subdomain ) 

@@ -15,7 +15,7 @@ class amoCRMredirectController extends Controller
         
         $redirectData = $request->all() ? $request->all() : false;
 
-        return $amoRedirect->saveRedirectData( $redirectData );
+        return $redirectData ? $amoRedirect->saveRedirectData( $redirectData ) : response( [ 'No Content ' ], 204 );
     }
 
     public function deleteData ( Request $request, amoCRMredirect $amoRedirect, $subdomain )
