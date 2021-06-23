@@ -23,3 +23,8 @@ Route::post( '/setUserStatuses', [ UserStatusesController::class, 'set' ] );
 // Settings
 Route::get( '/getSettings', [ SettingsController::class, 'get' ] );
 Route::post( '/setSettings', [ SettingsController::class, 'set' ] );
+
+//test
+Route::post( '/test', function(){
+    phpinfo();
+} );
